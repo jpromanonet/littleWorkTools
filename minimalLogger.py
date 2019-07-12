@@ -111,7 +111,7 @@ htmlStr = '''
     ## Creating the HTML body structure | End Tags to close the document
 
 htmlStrEndTags = '''    <center>
-							<b>MinimalLoggerPy</b> by <a href="http://www.jpromano.net" target="_blank">Juan P. Romano</a> | GitHub Repo  
+							<b>MinimalLoggerPy</b> by <a href="http://www.jpromano.net" target="_blank">Juan P. Romano</a> | <a href="https://www.github.com/jpromanonet" target="_blank">GitHub Repo</a>  
 							</br>
 							<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">
 								<img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
