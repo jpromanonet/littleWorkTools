@@ -77,6 +77,19 @@ if folderOption == 'y':
     folderQueryPath = fullWorkingPath + '/dailyQuerys'
     if not os.path.exists(str(folderQueryPath)):
         os.makedirs(folderQueryPath)
+
+elif folderOption == 'Y':
+
+        ### Creates the code snippets folder, if exists don't
+    folderCodePath = fullWorkingPath + '/dailyCodeSnippets'
+    if not os.path.exists(str(folderCodePath)):
+        os.makedirs(folderCodePath)
+
+        ### Creates the daily queries folder, if exists don't
+    folderQueryPath = fullWorkingPath + '/dailyQuerys'
+    if not os.path.exists(str(folderQueryPath)):
+        os.makedirs(folderQueryPath)
+        
 print('----------------------------------------------------------------------')
 print(' ')
 
