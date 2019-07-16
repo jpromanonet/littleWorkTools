@@ -27,6 +27,9 @@ keepLogging = True # Value = False stop logging
 dirName = None # Directory with the date as name
 fullWorkingPath = None # It's the sum of workingDir and dirName
 titleLog = None # Title for the log file.
+folderOption = None # Option variable when the logger ask if to create a folder.
+folderCodePath = None # Code folder path
+folderQueryPath = None # Query folder path
 
     ## Stats Variables
 
@@ -38,17 +41,14 @@ endLog = 0 # The same as startLogTime but as datetime
 totalLogTime = None # It's the time the user spend writing
 totalLogs = 0 # How many logs in this file
 
-# User parameters
+# User parameters and setting working environment
 
 print('Please introduce the working directory: ')
 workingDir = input()
 print(' ')
 print('Please write a title for the file: ')
 titleLog = input()
-print('----------------------------------------------------------------------')
 print(' ')
-
-# Program Logic
 
     ## Setting the stats values before start the writing
 startLogTime = datetime.datetime.now().strftime("%H:%M:%S")
@@ -62,6 +62,25 @@ if not os.path.exists(str(fullWorkingPath)):
     os.makedirs(fullWorkingPath)
 
 os.chdir(str(fullWorkingPath))
+
+    ## Ask if the user wants to create one folder to save code snippets made that day or queries.
+print('Create dailyCodeSnippets and dailyQuerys folders? (y/n)')
+folderOption = input()
+if folderOption == 'y':
+
+        ### Creates the code snippets folder, if exists don't
+    folderCodePath = fullWorkingPath + '/dailyCodeSnippets'
+    if not os.path.exists(str(folderCodePath)):
+        os.makedirs(folderCodePath)
+
+        ### Creates the daily queries folder, if exists don't
+    folderQueryPath = fullWorkingPath + '/dailyQuerys'
+    if not os.path.exists(str(folderQueryPath)):
+        os.makedirs(folderQueryPath)
+print('----------------------------------------------------------------------')
+print(' ')
+
+# Program Logic
 	
     ## Creating the filename 
 logFileName = datetime.datetime.now().strftime("%Y-%m-%d") # Establish the filename to the date it's create
