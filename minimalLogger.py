@@ -28,8 +28,13 @@ dirName = None # Directory with the date as name
 fullWorkingPath = None # It's the sum of workingDir and dirName
 titleLog = None # Title for the log file.
 folderOption = None # Option variable when the logger ask if to create a folder.
+
+    ## User folders
+    
 folderCodePath = None # Code folder path
 folderQueryPath = None # Query folder path
+folderDocsPath = None # Documents folder path
+folderRandomStuff = None # Random stuff folder path
 
     ## Stats Variables
 
@@ -64,7 +69,7 @@ if not os.path.exists(str(fullWorkingPath)):
 os.chdir(str(fullWorkingPath))
 
     ## Ask if the user wants to create one folder to save code snippets made that day or queries.
-print('Create dailyCodeSnippets and dailyQuerys folders? (y/n)')
+print('Create dailyCodeSnippets/dailyQuerys/dailyDocs/randomStuff folders? (y/n)')
 folderOption = input()
 if folderOption == 'y':
 
@@ -74,9 +79,19 @@ if folderOption == 'y':
         os.makedirs(folderCodePath)
 
         ### Creates the daily queries folder, if exists don't
-    folderQueryPath = fullWorkingPath + '/dailyQuerys'
+    folderQueryPath = fullWorkingPath + '/dailyQueries'
     if not os.path.exists(str(folderQueryPath)):
         os.makedirs(folderQueryPath)
+
+        ### Creates the daily documents folder, if exists don't
+    folderDocsPath = fullWorkingPath + '/dailyDocs'
+    if not os.path.exists(str(folderDocsPath)):
+        os.makedirs(folderDocsPath)
+    
+        ### Creates the random stuff folder, if exists don't
+    folderRandomStuff = fullWorkingPath + '/randomStuff'
+    if not os.path.exists(str(folderRandomStuff)):
+        os.makedirs(folderRandomStuff)
 
 elif folderOption == 'Y':
 
