@@ -27,14 +27,15 @@ keepLogging = True # Value = False stop logging
 dirName = None # Directory with the date as name
 fullWorkingPath = None # It's the sum of workingDir and dirName
 titleLog = None # Title for the log file.
-folderOption = None # Option variable when the logger ask if to create a folder.
 
     ## User folders
-    
+
+folderOption = None # Option variable when the logger ask if to create a folder.    
 folderCodePath = None # Code folder path
 folderQueryPath = None # Query folder path
 folderDocsPath = None # Documents folder path
 folderRandomStuff = None # Random stuff folder path
+importantMailsFolder = None # Important mail of the day folder
 
     ## Stats Variables
 
@@ -69,7 +70,7 @@ if not os.path.exists(str(fullWorkingPath)):
 os.chdir(str(fullWorkingPath))
 
     ## Ask if the user wants to create one folder to save code snippets made that day or queries.
-print('Create dailyCodeSnippets/dailyQuerys/dailyDocs/randomStuff folders? (y/n)')
+print('Create dailyCodeSnippets/dailyQuerys/dailyDocs/randomStuff/importantMail folders? (y/n)')
 folderOption = input()
 if folderOption == 'y':
 
@@ -93,6 +94,11 @@ if folderOption == 'y':
     if not os.path.exists(str(folderRandomStuff)):
         os.makedirs(folderRandomStuff)
 
+        ### Creates the random stuff folder, if exists don't
+    importantMailsFolder = fullWorkingPath + '/importantMailOfTheDay'
+    if not os.path.exists(str(importantMailsFolder)):
+        os.makedirs(importantMailsFolder)
+
 elif folderOption == 'Y':
 
         ### Creates the code snippets folder, if exists don't
@@ -101,9 +107,24 @@ elif folderOption == 'Y':
         os.makedirs(folderCodePath)
 
         ### Creates the daily queries folder, if exists don't
-    folderQueryPath = fullWorkingPath + '/dailyQuerys'
+    folderQueryPath = fullWorkingPath + '/dailyQueries'
     if not os.path.exists(str(folderQueryPath)):
         os.makedirs(folderQueryPath)
+
+        ### Creates the daily documents folder, if exists don't
+    folderDocsPath = fullWorkingPath + '/dailyDocs'
+    if not os.path.exists(str(folderDocsPath)):
+        os.makedirs(folderDocsPath)
+    
+        ### Creates the random stuff folder, if exists don't
+    folderRandomStuff = fullWorkingPath + '/randomStuff'
+    if not os.path.exists(str(folderRandomStuff)):
+        os.makedirs(folderRandomStuff)
+
+        ### Creates the random stuff folder, if exists don't
+    importantMailsFolder = fullWorkingPath + '/importantMailOfTheDay'
+    if not os.path.exists(str(importantMailsFolder)):
+        os.makedirs(importantMailsFolder)
         
 print('----------------------------------------------------------------------')
 print(' ')
