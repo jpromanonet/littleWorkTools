@@ -126,8 +126,30 @@ elif folderOption == 'Y':
     if not os.path.exists(str(importantMailsFolder)):
         os.makedirs(importantMailsFolder)
         
-print('----------------------------------------------------------------------')
+print('---------------------------------------------------------------------------------------------------------')
 print(' ')
+print('EASY GUIDELINES')
+print(' ')
+print('1. ALWAYS read the documentation, every doc and written word about any project helps.')
+print(' ')
+print('2. ASK for more documentation just in case.')
+print(' ')
+print('3. SEARCH on internet first.')
+print(' ')
+print('4. ALWAYS use the pomodoro technique')
+print(' ')
+print('5. ALWAYS spend 2 pomodores(50min to 1hr) trying to solve a problem if you are stuck,')
+print('if you did not solve it, ASK for help, never get over the 2 pomodores to ASK, its the limit.')
+print(' ')
+print('6. DOCUMENT everything, log your daily work, even just for yourself')
+print(' ')
+print('7. SAVE every important file in many places to be sure.')
+print(' ')
+print('8. PUSH to GIT all the time, make a parallel branch if you are not sure of the change but PUSH')
+print(' ')
+print('''9. REMEMBER: git pull && git add -A && git commit -m 'your message' && git push ''')
+print(' ')
+print('---------------------------------------------------------------------------------------------------------')
 
 # Program Logic
 	
