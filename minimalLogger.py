@@ -151,7 +151,7 @@ print('8. PUSH to GIT all the time, make a parallel branch if you are not sure o
 print(' ')
 print('''9. REMEMBER: git pull && git add -A && git commit -m 'your message' && git push ''')
 print(' ')
-print('10. REMEBER to always close the log file or else, it would be lost!!!')
+print('10. REMEMBER to always close the log file or else, it would be lost!!!')
 print('')
 print('---------------------------------------------------------------------------------------------------------')
 
