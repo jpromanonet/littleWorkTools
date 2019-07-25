@@ -128,7 +128,9 @@ elif folderOption == 'Y':
         
 print('---------------------------------------------------------------------------------------------------------')
 print(' ')
-print('EASY GUIDELINES')
+print('***********************')
+print('*** EASY GUIDELINES ***')
+print('***********************')
 print(' ')
 print('1. ALWAYS read the documentation, every doc and written word about any project helps.')
 print(' ')
@@ -139,7 +141,7 @@ print(' ')
 print('4. ALWAYS use the pomodoro technique')
 print(' ')
 print('5. ALWAYS spend 2 pomodores(50min to 1hr) trying to solve a problem if you are stuck,')
-print('if you did not solve it, ASK for help, never get over the 2 pomodores to ASK, its the limit.')
+print('   if you did not solve it, ASK for help, never get over the 2 pomodores to ASK, its the limit.')
 print(' ')
 print('6. DOCUMENT everything, log your daily work, even just for yourself')
 print(' ')
@@ -149,6 +151,8 @@ print('8. PUSH to GIT all the time, make a parallel branch if you are not sure o
 print(' ')
 print('''9. REMEMBER: git pull && git add -A && git commit -m 'your message' && git push ''')
 print(' ')
+print('10. REMEBER to always close the log file or else, it would be lost!!!')
+print('')
 print('---------------------------------------------------------------------------------------------------------')
 
 # Program Logic
