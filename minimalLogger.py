@@ -153,6 +153,7 @@ print('''9. REMEMBER: git pull && git add -A && git commit -m 'your message' && 
 print(' ')
 print('10. REMEMBER to always close the log file or else, it would be lost!!!')
 print('')
+print('11. READ THE CODE 3 times before ask for help!')
 print('---------------------------------------------------------------------------------------------------------')
 
 # Program Logic
