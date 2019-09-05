@@ -154,6 +154,8 @@ print(' ')
 print('10. REMEMBER to always close the log file or else, it would be lost!!!')
 print('')
 print('11. READ THE CODE 3 times before ask for help!')
+print('')
+print('12. RTFM = READ THE FUCKING MANUAL!')
 print('---------------------------------------------------------------------------------------------------------')
 
 # Program Logic
