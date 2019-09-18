@@ -49,11 +49,9 @@ totalLogs = 0 # How many logs in this file
 
 # User parameters and setting working environment
 
-print('Please introduce the working directory: ')
-workingDir = input()
+workingDir = input('Please introduce the working directory: ')
 print(' ')
-print('Please write a title for the file: ')
-titleLog = input()
+titleLog = input('Please write a title for the file: ')
 print(' ')
 
     ## Setting the stats values before start the writing
@@ -70,8 +68,7 @@ if not os.path.exists(str(fullWorkingPath)):
 os.chdir(str(fullWorkingPath))
 
     ## Ask if the user wants to create one folder to save code snippets made that day or queries.
-print('Create dailyCodeSnippets/dailyQuerys/dailyDocs/randomStuff/importantMail folders? (y/n)')
-folderOption = input()
+folderOption = input('Create dailyCodeSnippets/dailyQuerys/dailyDocs/randomStuff/importantMail folders? (y/n) ')
 if folderOption == 'y':
 
         ### Creates the code snippets folder, if exists don't
@@ -227,8 +224,7 @@ while keepLogging == True:
         ### Creating the log header
     logDateTime = datetime.datetime.now().strftime("%Y-%m-%d at %H:%M:%S")
         ### User input log
-    print('Start writing your log: ')
-    userInputLog = input()
+    userInputLog = input("Log: ")
         ### Now it creates the log input with the style and the user input
     fullInputLog = '''</br></br>
                     <div class = "col-lg-12 col-md-12 col-sm-12 col-sx-12">
@@ -240,8 +236,7 @@ while keepLogging == True:
     totalLogs += 1
         ### Ask if the user wants to keep adding logs
     print(' ')
-    print('Do you want to keep writing? y/n')
-    option = input()
+    option = input('Do you want to keep writing? y/n ')
     if option == 'y':
         keepLogging = True
     elif option == 'Y':
