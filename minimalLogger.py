@@ -9,43 +9,46 @@
 import random
 import os
 import datetime
+# Install this one from this git repo: git clone https://github.com/jmcnamara/XlsxWriter.git
+import xlsxwriter
 
 # Defining global variables
 
-    ## User parameters and doc construction variables
+# User parameters and doc construction variables
 
-userInputLog = None # Gonna be the user input to concatenate with the htmlStr
-fullInputLog = None # It takes the userInputLog and adds bootstrap style
-htmlStr = None # Gonna be the HTML body without end tags
-htmlStrEndTags = None # Gonna be the HTML end tags
-logFileName = None # It's the name with the date
-logDateTime = None # Datetime of every log
-randomCode = 0 # It's the unique ID number of every file.
-fullFileName = None # It's the sum of logFileName and randomCode
-workingDir = None # It's the dir where the user is gonna save the log file.
-keepLogging = True # Value = False stop logging
-dirName = None # Directory with the date as name
-fullWorkingPath = None # It's the sum of workingDir and dirName
-titleLog = None # Title for the log file.
+userInputLog = None  # Gonna be the user input to concatenate with the htmlStr
+fullInputLog = None  # It takes the userInputLog and adds bootstrap style
+htmlStr = None  # Gonna be the HTML body without end tags
+htmlStrEndTags = None  # Gonna be the HTML end tags
+logFileName = None  # It's the name with the date
+logDateTime = None  # Datetime of every log
+randomCode = 0  # It's the unique ID number of every file.
+fullFileName = None  # It's the sum of logFileName and randomCode
+workingDir = None  # It's the dir where the user is gonna save the log file.
+keepLogging = True  # Value = False stop logging
+dirName = None  # Directory with the date as name
+fullWorkingPath = None  # It's the sum of workingDir and dirName
+titleLog = None  # Title for the log file.
 
-    ## User folders
+# User folders
 
-folderOption = None # Option variable when the logger ask if to create a folder.    
-folderCodePath = None # Code folder path
-folderQueryPath = None # Query folder path
-folderDocsPath = None # Documents folder path
-folderRandomStuff = None # Random stuff folder path
-importantMailsFolder = None # Important mail of the day folder
+# Option variable when the logger ask if to create a folder.
+folderOption = None
+folderCodePath = None  # Code folder path
+folderQueryPath = None  # Query folder path
+folderDocsPath = None  # Documents folder path
+folderRandomStuff = None  # Random stuff folder path
+importantMailsFolder = None  # Important mail of the day folder
 
-    ## Stats Variables
+# Stats Variables
 
-stats = None # Contains the string with the HTML tags
-startLogTime = None # It's the time the user start loggin
-finishLogTime = None # It's the time the user finish loggin
-beginLog = 0 # The same as startLogTime but as datetime
-endLog = 0 # The same as startLogTime but as datetime
-totalLogTime = None # It's the time the user spend writing
-totalLogs = 0 # How many logs in this file
+stats = None  # Contains the string with the HTML tags
+startLogTime = None  # It's the time the user start loggin
+finishLogTime = None  # It's the time the user finish loggin
+beginLog = 0  # The same as startLogTime but as datetime
+endLog = 0  # The same as startLogTime but as datetime
+totalLogTime = None  # It's the time the user spend writing
+totalLogs = 0  # How many logs in this file
 
 # User parameters and setting working environment
 
@@ -54,11 +57,11 @@ print(' ')
 titleLog = input('Please write a title for the file: ')
 print(' ')
 
-    ## Setting the stats values before start the writing
+# Setting the stats values before start the writing
 startLogTime = datetime.datetime.now().strftime("%H:%M:%S")
 beginLog = datetime.datetime.now()
 
-	## Create dir if not exist or use it to save files for the day
+# Create dir if not exist or use it to save files for the day
 dirName = datetime.datetime.now().strftime("%Y-%m-%d")
 fullWorkingPath = workingDir + '\\' + dirName
 
@@ -67,62 +70,110 @@ if not os.path.exists(str(fullWorkingPath)):
 
 os.chdir(str(fullWorkingPath))
 
-    ## Ask if the user wants to create one folder to save code snippets made that day or queries.
-folderOption = input('Create dailyCodeSnippets/dailyQuerys/dailyDocs/randomStuff/importantMail folders? (y/n) ')
+# Ask the user to create a spreadsheet week plan.
+weekplanOption = input('Create a week plan template for the week? Y/y/n ')
+print(' ')
+if weekplanOption == 'Y':
+    # Datetime for filename
+    weekPlanFileName = datetime.datetime.now().strftime("%Y-%m-%d")
+    # Creates the workbook and the spreadsheet
+    workbook = xlsxwriter.Workbook('Week_Plan_'+weekPlanFileName+'.xlsx')
+    worksheet = workbook.add_worksheet()
+
+    # Set the starting point for the file.
+    row = 0
+    col = 0
+
+    # Styles for the cols and set days
+    headerColor = workbook.add_format({'bg_color': 'green', 'bold': True})
+
+    worksheet.write('A1', 'Lunes', headerColor)
+    worksheet.write('B1', 'Martes', headerColor)
+    worksheet.write('C1', 'Miercoles', headerColor)
+    worksheet.write('D1', 'Jueves', headerColor)
+    worksheet.write('E1', 'Viernes', headerColor)
+
+    workbook.close()
+
+elif weekplanOption == 'y':
+    # Datetime for filename
+    weekPlanFileName = datetime.datetime.now().strftime("%Y-%m-%d")
+    # Creates the workbook and the spreadsheet
+    workbook = xlsxwriter.Workbook('Week_Plan_'+weekPlanFileName+'.xlsx')
+    worksheet = workbook.add_worksheet()
+
+    # Set the starting point for the file.
+    row = 0
+    col = 0
+
+    # Styles for the cols and set days
+    headerColor = workbook.add_format({'bg_color': 'green', 'bold': True})
+
+    worksheet.write('A1', 'Lunes', headerColor)
+    worksheet.write('B1', 'Martes', headerColor)
+    worksheet.write('C1', 'Miercoles', headerColor)
+    worksheet.write('D1', 'Jueves', headerColor)
+    worksheet.write('E1', 'Viernes', headerColor)
+
+    workbook.close()
+
+    # Ask if the user wants to create one folder to save code snippets made that day or queries.
+folderOption = input(
+    'Create dailyCodeSnippets/dailyQuerys/dailyDocs/randomStuff/importantMail folders? (y/n) ')
 if folderOption == 'y':
 
-        ### Creates the code snippets folder, if exists don't
+        # Creates the code snippets folder, if exists don't
     folderCodePath = fullWorkingPath + '/dailyCodeSnippets'
     if not os.path.exists(str(folderCodePath)):
         os.makedirs(folderCodePath)
 
-        ### Creates the daily queries folder, if exists don't
+        # Creates the daily queries folder, if exists don't
     folderQueryPath = fullWorkingPath + '/dailyQueries'
     if not os.path.exists(str(folderQueryPath)):
         os.makedirs(folderQueryPath)
 
-        ### Creates the daily documents folder, if exists don't
+        # Creates the daily documents folder, if exists don't
     folderDocsPath = fullWorkingPath + '/dailyDocs'
     if not os.path.exists(str(folderDocsPath)):
         os.makedirs(folderDocsPath)
-    
-        ### Creates the random stuff folder, if exists don't
+
+        # Creates the random stuff folder, if exists don't
     folderRandomStuff = fullWorkingPath + '/randomStuff'
     if not os.path.exists(str(folderRandomStuff)):
         os.makedirs(folderRandomStuff)
 
-        ### Creates the random stuff folder, if exists don't
+        # Creates the random stuff folder, if exists don't
     importantMailsFolder = fullWorkingPath + '/importantMailOfTheDay'
     if not os.path.exists(str(importantMailsFolder)):
         os.makedirs(importantMailsFolder)
 
 elif folderOption == 'Y':
 
-        ### Creates the code snippets folder, if exists don't
+        # Creates the code snippets folder, if exists don't
     folderCodePath = fullWorkingPath + '/dailyCodeSnippets'
     if not os.path.exists(str(folderCodePath)):
         os.makedirs(folderCodePath)
 
-        ### Creates the daily queries folder, if exists don't
+        # Creates the daily queries folder, if exists don't
     folderQueryPath = fullWorkingPath + '/dailyQueries'
     if not os.path.exists(str(folderQueryPath)):
         os.makedirs(folderQueryPath)
 
-        ### Creates the daily documents folder, if exists don't
+        # Creates the daily documents folder, if exists don't
     folderDocsPath = fullWorkingPath + '/dailyDocs'
     if not os.path.exists(str(folderDocsPath)):
         os.makedirs(folderDocsPath)
-    
-        ### Creates the random stuff folder, if exists don't
+
+        # Creates the random stuff folder, if exists don't
     folderRandomStuff = fullWorkingPath + '/randomStuff'
     if not os.path.exists(str(folderRandomStuff)):
         os.makedirs(folderRandomStuff)
 
-        ### Creates the random stuff folder, if exists don't
+        # Creates the random stuff folder, if exists don't
     importantMailsFolder = fullWorkingPath + '/importantMailOfTheDay'
     if not os.path.exists(str(importantMailsFolder)):
         os.makedirs(importantMailsFolder)
-        
+
 print('---------------------------------------------------------------------------------------------------------')
 print(' ')
 print('***********************')
@@ -156,13 +207,16 @@ print('12. RTFM = READ THE FUCKING MANUAL!')
 print('---------------------------------------------------------------------------------------------------------')
 
 # Program Logic
-	
-    ## Creating the filename 
-logFileName = datetime.datetime.now().strftime("%Y-%m-%d") # Establish the filename to the date it's create
-randomCode = random.randint(1,10000000) # It's create the serial random number to validate the file
-fullFileName = str(logFileName) + '_(Sn#' + str(randomCode) + ').html' # Full file name
 
-    ## Creating the HTML body structure | Without end tags
+# Creating the filename
+# Establish the filename to the date it's create
+logFileName = datetime.datetime.now().strftime("%Y-%m-%d")
+# It's create the serial random number to validate the file
+randomCode = random.randint(1, 10000000)
+fullFileName = str(logFileName) + '_(Sn#' + \
+    str(randomCode) + ').html'  # Full file name
+
+# Creating the HTML body structure | Without end tags
 
 htmlStr = ''' 
             <DOCTYPE! html>
@@ -202,7 +256,7 @@ htmlStr = '''
                             <div class="container">
                                 <div class="row">'''
 
-    ## Creating the HTML body structure | End Tags to close the document
+# Creating the HTML body structure | End Tags to close the document
 
 htmlStrEndTags = '''    <center>
 							<b>MinimalLoggerPy</b> by <a href="http://www.jpromano.net" target="_blank">Juan P. Romano</a> | <a href="https://www.github.com/jpromanonet" target="_blank">GitHub Repo</a>  
@@ -215,26 +269,26 @@ htmlStrEndTags = '''    <center>
                 </body>
             </html>'''
 
-    ## Here starts the HTML document
-htmlFile= open(fullFileName,"w")
+# Here starts the HTML document
+htmlFile = open(fullFileName, "w")
 htmlFile.write(str(htmlStr))
 
-    ## Here starts the loggin module
+# Here starts the loggin module
 while keepLogging == True:
-        ### Creating the log header
+        # Creating the log header
     logDateTime = datetime.datetime.now().strftime("%Y-%m-%d at %H:%M:%S")
-        ### User input log
+    # User input log
     userInputLog = input("Log: ")
-        ### Now it creates the log input with the style and the user input
+    # Now it creates the log input with the style and the user input
     fullInputLog = '''</br></br>
                     <div class = "col-lg-12 col-md-12 col-sm-12 col-sx-12">
                         <div class="panel panel-success">
                             <div class="panel-heading">Log time: <b>'''+logDateTime+'''</b></div>'''+userInputLog+'''</div>
                     </div>'''
     htmlFile.write(str(fullInputLog))
-        ### Counting logs inputs
+    # Counting logs inputs
     totalLogs += 1
-        ### Ask if the user wants to keep adding logs
+    # Ask if the user wants to keep adding logs
     print(' ')
     option = input('Do you want to keep writing? y/n ')
     if option == 'y':
@@ -244,12 +298,12 @@ while keepLogging == True:
     else:
         break
 
-    ## Setting the stats values after finish the writing
+    # Setting the stats values after finish the writing
 finishLogTime = datetime.datetime.now().strftime("%H:%M:%S")
 endLog = datetime.datetime.now()
-totalLogTime = endLog - beginLog # How much time spend writing
+totalLogTime = endLog - beginLog  # How much time spend writing
 
-    ## Creating the HTML tags for the Stats line
+# Creating the HTML tags for the Stats line
 
 stats = '''                 </div>
                         </div>
@@ -272,7 +326,7 @@ stats = '''                 </div>
                             </div>
                         </div>'''
 
-    ## Here ends the HTML document
+# Here ends the HTML document
 htmlFile.write(str(stats))
 htmlFile.write(str(htmlStrEndTags))
 htmlFile.close()
